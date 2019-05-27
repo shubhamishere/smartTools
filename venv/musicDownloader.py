@@ -17,14 +17,9 @@ import youtube_dl
 parser = ConfigParser()
 parser.read('input.ini')
 
-#if len(sys.argv) == 1:
-#    print("Invalid Command. Enter Search Terms.")
-#    sys.exit()
-
 home_url = "https://www.youtube.com"
 
 os.makedirs("Music", exist_ok=True)
-#search_term = ' '.join(sys.argv[1:])
 url = "https://www.youtube.com/results?search_query=" + parser.get('default', 'search_term')
 
 res = requests.get(url)
@@ -32,12 +27,10 @@ res.raise_for_status()
 
 soup = bs4.BeautifulSoup(res.text)
 
-#print("Not the actual soup: " + soup)
-
 search_results = soup.select("h3 a")
-#print(search_results)
 video_title = search_results[0].get("title")
 video_url = home_url + search_results[0].get("href")
+
 print("This is video URL: " + search_results[0].get("href"))
 print("Downloading audio from %s" % video_url)
 
