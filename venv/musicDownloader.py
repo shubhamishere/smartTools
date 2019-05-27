@@ -19,7 +19,7 @@ parser.read('input.ini')
 
 home_url = "https://www.youtube.com"
 
-os.makedirs("Music", exist_ok=True)
+os.makedirs("DownloadedMusic", exist_ok=True)
 url = "https://www.youtube.com/results?search_query=" + parser.get('default', 'search_term')
 
 res = requests.get(url)
